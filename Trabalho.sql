@@ -162,3 +162,17 @@ insert into LocacaoVeiculo (idLocacao, idVeiculo) values
      (18, 2),
      (19, 10),
      (20, 8);
+
+SELECT SUM(valorTotal) FROM pagamento 
+WHERE estado LIKE 'Pago'; 
+
+SELECT nome, SUM(valortotal) AS 'Saldo Devedor' FROM Pagamento 
+INNER JOIN locacao ON locacao. idpagamento = pagamento. idpagamento 
+INNER JOIN cliente ON cliente. idcliente = locacao. idcliente 
+WHERE Pagamento. estado LIKE 'pendente' 
+GROUP BY nome 
+ORDER BY nome; 
+
+select estado, valortotal, cliente. nome from pagamento
+INNER JOIN locacao ON locacao. idpagamento = pagamento. idpagamento
+INNER JOIN cliente ON cliente. idcliente = locacao. idcliente;
